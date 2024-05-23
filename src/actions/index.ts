@@ -29,7 +29,7 @@ export const handleCreateUser = async (formData: FormData) => {
 
   // Save user data in Redis
   const userKey = `user:${formDataObject.email}`;
-  await redis.hmset(userKey, userData);
+  await redis.hset(userKey, userData);
 
   // Create access token and set the cookie
   await createAccessToken(formDataObject.email as string, formDataObject.password as string);
@@ -64,7 +64,7 @@ export const handleLogin = async (formData: FormData) => {
   if (accessToken) {
     console.log('entre');
     
-    // Redirigir a la página de la tienda
+    // Redirigir a la página de la consulta
     redirect('/payment')
   }
 };
