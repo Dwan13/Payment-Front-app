@@ -7,20 +7,24 @@ import bcrypt from 'bcryptjs';
 import redis from "app/utils/auth/redis"
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getPayments } from 'app/services/mongo/consulta';
+import { v4 as uuidv4 } from 'uuid';
 
 export const handleCreateUser = async (formData: FormData) => {
   const formDataObject = Object.fromEntries(formData);
   delete formDataObject["password_confirmation"];
   
-
   // Hash the password
   const hashedPassword = await bcrypt.hash(formDataObject.password as string, 10);
+  
+  // Generate secondary_id
+  const secondary_id = uuidv4();
   
   // Prepare user data
   const userData = {
     ...formDataObject,
     phone: '+57' + formDataObject.phone,
-    password: hashedPassword
+    password: hashedPassword,
+    secondary_id
   };
 
   // Save user data in Redis
@@ -31,7 +35,7 @@ export const handleCreateUser = async (formData: FormData) => {
   await createAccessToken(formDataObject.email as string, formDataObject.password as string);
   
   // Redirect to payment
-  redirect('/payment')
+  redirect('/payment');
 };
 
 export const handleLogin = async (formData: FormData) => {

@@ -28,6 +28,7 @@ export const validateAccessToken = async () => {
     return {
       firstName: user.firstName,
       email: user.email,
+      secondary_id: user?.secondary_id
     };
   } catch (error) {
     console.error(error);
