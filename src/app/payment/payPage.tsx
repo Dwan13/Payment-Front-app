@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FaCreditCard } from "react-icons/fa";
-import Style from "./StoreLayout.module.sass";
+import Style from "./PayLayout.module.sass";
 import ChartComponent from "./chart";
 import Paginator from "app/components/shared/Paginator"; // Asegúrate de tener este componente creado
 
@@ -52,15 +52,15 @@ export default function PayPage(props: PagePayProps) {
   };
 
   return (
-    <div className={Style.StoreLayout__content}>
+    <div className={Style.payLayout__content}>
       <div>
-        <ul className={Style.StoreLayout__list}>
+        <ul className={Style.payLayout__list}>
           {currentPayments?.map((payment: Payment) => ( // Utiliza optional chaining para evitar errores si currentPayments es undefined
             <li
-              className={Style.StoreLayout__chip}
+              className={Style.payLayout__chip}
               key={payment.new_primary_id}
             >
-              <div className={Style.StoreLayout__content_batch}>
+              <div className={Style.payLayout__content_batch}>
                 <strong>Site: {payment.Site}</strong>
                 <span className={Style.divider} />
                 <span>
@@ -71,7 +71,7 @@ export default function PayPage(props: PagePayProps) {
                   ${payment.amount} -{" "}
                   {new Date(payment.dateCreatedPay).toLocaleDateString()}
                 </span>
-                <span className={Style.StoreLayout__batch}>
+                <span className={Style.payLayout__batch}>
                   {payment.StatustRefundGtw}{" "}
                 </span>
               </div>
