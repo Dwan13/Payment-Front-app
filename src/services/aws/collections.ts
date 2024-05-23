@@ -1,8 +1,8 @@
 import { env } from "app/config/env"
-import { shopifyUrls } from "./urls"
+import { paymentUrls } from "./urls"
 export const getPayments = async () => {
   try {
-    const response = await fetch(shopifyUrls.payments.all)
+    const response = await fetch(paymentUrls.payments.all)
     const { smart_payments } = await response.json()
     /* const transformedCollections = smart_payments.map((payment: any) => {
       return {
@@ -11,7 +11,7 @@ export const getPayments = async () => {
         handle: payment.handle
       }
     }) */
-    console.log('smart_payments', smart_payments, shopifyUrls.payments.all);
+    console.log('smart_payments', smart_payments, paymentUrls.payments.all);
     
     return smart_payments
   } catch (error) {

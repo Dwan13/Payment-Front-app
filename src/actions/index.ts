@@ -30,7 +30,7 @@ export const handleCreateUser = async (formData: FormData) => {
   // Create access token and set the cookie
   await createAccessToken(formDataObject.email as string, formDataObject.password as string);
   
-  // Redirect to store
+  // Redirect to payment
   redirect('/payment')
 };
 
@@ -66,15 +66,15 @@ export const handleLogin = async (formData: FormData) => {
 };
 
 export const handleLogOut = async () => {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get('accessToken')?.value || '';
+  const cookiepayment = cookies();
+  const accessToken = cookiepayment.get('accessToken')?.value || '';
 
   if (accessToken) {
     // Eliminar el token de Redis
     await redis.del(`token:${accessToken}`);
 
     // Borrar la cookie del cliente
-    cookieStore.set('accessToken', '', {
+    cookiepayment.set('accessToken', '', {
       path: '/',
       expires: new Date(0),
       httpOnly: true,

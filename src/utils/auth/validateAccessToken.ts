@@ -3,8 +3,8 @@ import { cookies } from 'next/headers';
 
 export const validateAccessToken = async () => {
   try {
-    const cookieStore = cookies();
-    const accessToken = cookieStore.get('accessToken')?.value || '';
+    const cookiepayment = cookies();
+    const accessToken = cookiepayment.get('accessToken')?.value || '';
 
     if (!accessToken) {
       throw new Error('No access token found');

@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-type Store = {
+type Pay = {
   cart: CartItem[]
   addToCart: (cartItem: CartItem) => void
   removeCartItem: (cartItem: CartItem) => void
@@ -10,7 +10,7 @@ const saveArrayToLocalStorage = (array: CartItem[]) => {
   localStorage.setItem('cart', JSON.stringify(array))
 }
 
-export const useShoppingCart = create<Store>()((set) => ({
+export const usePaymentCart = create<Pay>()((set) => ({
   cart: (() => {
 
     if (typeof window === 'undefined') {
