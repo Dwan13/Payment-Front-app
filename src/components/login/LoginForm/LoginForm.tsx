@@ -23,7 +23,7 @@ export const LoginForm = () => {
         <input type="text" name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
         <input type="password" name="password" placeholder="password" />
         <input type="submit" name="submit" value="Login" />
-        <p className={styles.NewAccountForm__signup}>Don't have an account? <Link href="/signup">Register here</Link></p>
+        <p className={styles.NewAccountForm__signup}>Don&apos;t have an account? <Link href="/signup">Register here</Link></p>
       </form>
 
     </div>
