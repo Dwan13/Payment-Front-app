@@ -35,7 +35,7 @@ export const handleCreateUser = async (formData: FormData) => {
   await createAccessToken(formDataObject.email as string, formDataObject.password as string);
   
   // Redirect to payment
-  redirect('/payment');
+  redirect('/my-account');
 };
 
 export const handleLogin = async (formData: FormData) => {
@@ -65,7 +65,7 @@ export const handleLogin = async (formData: FormData) => {
     console.log('entre');
     
     // Redirigir a la página de la consulta
-    redirect('/payment')
+    redirect('/my-account')
   }
 };
 
