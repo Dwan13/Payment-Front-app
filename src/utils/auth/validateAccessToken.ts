@@ -10,14 +10,14 @@ export const validateAccessToken = async () => {
       throw new Error('No access token found');
     }
 
-    // Get the email associated with the access token from Redis
+    
     const email = await redis.get(`token:${accessToken}`);
 
     if (!email) {
       throw new Error('Invalid access token');
     }
 
-    // Get the user data associated with the email
+    
     const userKey = `user:${email}`;
     const user = await redis.hgetall(userKey);
 

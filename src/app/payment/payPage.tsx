@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { FaCreditCard } from "react-icons/fa";
 import Style from "./PayLayout.module.sass";
 import ChartComponent from "./chart";
-import Paginator from "app/components/shared/Paginator"; // Asegúrate de tener este componente creado
+import Paginator from "app/components/shared/Paginator"; 
 
 interface Payment {
     new_primary_id: string
@@ -36,22 +36,22 @@ interface Payment {
 
 interface PagePayProps {
   data?: Payment[];
-  userSecondaryId?: string; // Pasar el secondary_id del usuario autenticado como prop
+  userSecondaryId?: string; 
 }
 
 export default function PayPage(props: PagePayProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const paymentsPerPage = 10; // Cantidad de pagos por página
+  const paymentsPerPage = 10; 
 
-  // Filtrar pagos según el secondary_id del usuario autenticado
+  
   let userPayments = props.data;
   if (props.userSecondaryId) {
     userPayments = props.data?.filter(payment => payment.secondary_id === props.userSecondaryId);
   }
-  // Lógica para limitar los pagos a mostrar en función de la página actual
+  
   const startIndex = (currentPage - 1) * paymentsPerPage;
   const endIndex = startIndex + paymentsPerPage;
-  const currentPayments = userPayments?.slice(startIndex, endIndex); // Utiliza optional chaining para evitar errores si userPayments es undefined
+  const currentPayments = userPayments?.slice(startIndex, endIndex); 
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -61,7 +61,7 @@ export default function PayPage(props: PagePayProps) {
     <div className={Style.payLayout__content}>
       <div>
         <ul className={Style.payLayout__list}>
-          {currentPayments?.map((payment: Payment) => ( // Utiliza optional chaining para evitar errores si currentPayments es undefined
+          {currentPayments?.map((payment: Payment) => ( 
             <li
               className={Style.payLayout__chip}
               key={payment.new_primary_id}
@@ -85,7 +85,7 @@ export default function PayPage(props: PagePayProps) {
           ))}
         </ul>
         <Paginator
-          totalItems={userPayments?.length || 0} // Utiliza optional chaining y el operador de fusión nulo para manejar el caso en que userPayments sea undefined
+          totalItems={userPayments?.length || 0} 
           currentPage={currentPage}
           onPageChange={handlePageChange}
         />
